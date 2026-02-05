@@ -47,7 +47,9 @@ function prompt {
 	return $promptText
 }
 
-Invoke-Expression (&scoop-search --hook)
+if (get-command scoop-search -ErrorAction SilentlyContinue) {
+	Invoke-Expression (&scoop-search --hook)
+}
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 set-alias -Name ls -Value eza
