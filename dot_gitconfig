@@ -1,0 +1,36 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = BR
+	email = bjorn.roberg@gmail.com
+
+[alias]
+  up = pull --rebase --autostash
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  # View the current working tree status using the short format
+  s = status -s
+  p = !"git pull; git submodule foreach git pull origin master"
+  ca = !git add -A && git commit -av
+  # Switch to a branch, creating it if necessary
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  contributors = shortlog --summary --numbered
+  st = status
+  primary = "!f() { \
+    git branch -a | \
+    sed -n -E -e '/remotes.origin.ma(in|ster)$/s@remotes/origin/@@p'; \
+  }; f"
+  # Switch to main or master, whichever exists, and update it.
+  ma = "!f() { \
+    git checkout $(git primary) && \
+    git pull; \
+  }; f"
+  mma = "!f() { \
+    git ma && \
+    git pull upstream $(git primary) --ff-only && \
+    git push; \
+  }; f"
