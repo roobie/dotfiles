@@ -156,6 +156,18 @@ mode "bank" {
 }
 bindsym $mod+b mode "bank"
 
+# Send-to-bank mode. $mod+Shift+b enters; press k/c/a to send the focused
+# window to that bank's same-numbered workspace (focus stays put).
+mode "bank-send" {
+        bindsym k exec --no-startup-id $bank send koala,    mode "default"
+        bindsym c exec --no-startup-id $bank send chimera,  mode "default"
+        bindsym a exec --no-startup-id $bank send axolotl,  mode "default"
+        bindsym Tab exec --no-startup-id $bank send previous, mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Shift+b mode "bank-send"
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)

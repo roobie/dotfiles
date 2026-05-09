@@ -10,6 +10,8 @@
 --   move <N>        move focused container to workspace N in current bank
 --   bank <NAME>     switch to bank NAME, restoring its last-visited workspace
 --   bank previous   swap to the bank we were on before the current one
+--   send <NAME>     send focused container to NAME's same-N workspace (no follow)
+--   send previous   send to the previous bank's same-N workspace
 
 local json = require("lk.json")
 local fs   = require("lk.fs")
@@ -63,7 +65,21 @@ elseif cmd == "bank" then
   save_state(s)
   proc.run("i3-msg", "workspace", ws(target, s.last[target] or 1))
 
+elseif cmd == "send" then
+  -- Resolve N from the actually-focused workspace (not state) so this stays
+  -- correct even if focus was changed via the bar / external i3-msg.
+  local target = (val == "previous") and s.previous or val
+  local n
+  local r = proc.run("i3-msg", "-t", "get_workspaces")
+  if r and r.stdout then
+    for _, w in ipairs(json.decode(r.stdout)) do
+      if w.focused then n = tonumber(w.name:match(":(%d+)$")) break end
+    end
+  end
+  n = n or s.last[s.current] or 1
+  proc.run("i3-msg", "move", "container", "to", "workspace", ws(target, n))
+
 else
-  io.stderr:write("usage: i3-bank.lua {go N | move N | bank NAME|previous}\n")
+  io.stderr:write("usage: i3-bank.lua {go N | move N | bank NAME|previous | send NAME|previous}\n")
   os.exit(2)
 end
