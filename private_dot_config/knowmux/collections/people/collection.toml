@@ -1,0 +1,5 @@
+name         = "people"
+para_class   = "resource"
+tier         = 2
+description  = "Personal contact directory — people BR has corresponded or worked with, with aliases for identifier-shaped retrieval"
+decay_immune = 1

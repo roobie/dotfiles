@@ -1,0 +1,4 @@
+name         = "internet-research"
+para_class   = "resource"
+tier         = 3
+description  = "curated research from the Internet"

@@ -1,0 +1,107 @@
+[instance]
+db = "/home/jani/.local/share/knowmux/knowmux.db"
+collections_dir = "./collections"
+
+[cache]
+embedding_db = ""
+
+[[sources]]
+path = "/home/jani/.local/share/knowmux/observations"
+adapter = "markdown"
+include = [".*\\.md$"]
+
+[[sources]]
+path = "~/devel/knowmux"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = [
+    "(^|/)mnemex-out/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/"
+]
+
+[[sources]]
+path = "~/devel/roobie.github.io"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+
+[[sources]]
+path = "~/devel/lk"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+
+[[sources]]
+path = "~/devel/pa"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = [
+    "(^|/)mnemex-out/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)threads/results/",
+    "(^|/)cache/",
+]
+
+[[sources]]
+path = "~/devel/acos-kommunio"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/", "(^|/)cache/"]
+
+[[sources]]
+path = "~/devel/kommunio.se"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/", "(^|/)cache/"]
+
+[[sources]]
+path = "~/devel/cognex"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/", "(^|/)cache/"]
+
+[[sources]]
+path = "~/devel/cairn"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+
+[[sources]]
+path = "~/devel/casq"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+
+[[sources]]
+path = "~/devel/dillylang"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+
+[[sources]]
+path = "~/devel/nanovault"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+
+[[sources]]
+path = "~/devel/mise-nanovault"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+
+[[sources]]
+path = "~/devel/sludgepool"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+
+[[sources]]
+path = "~/devel/deltatrials"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]

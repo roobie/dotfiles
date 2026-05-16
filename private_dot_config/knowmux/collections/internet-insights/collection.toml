@@ -1,0 +1,4 @@
+name         = "internet-insights"
+para_class   = "resource"
+tier         = 3
+description  = "curated insights from the Internet"
