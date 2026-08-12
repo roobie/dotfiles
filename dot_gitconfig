@@ -34,3 +34,5 @@
     git pull upstream $(git primary) --ff-only && \
     git push; \
   }; f"
+[init]
+	defaultBranch = main

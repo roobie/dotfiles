@@ -9,6 +9,13 @@ embedding_db = ""
 path = "/home/jani/.local/share/knowmux/observations"
 adapter = "markdown"
 include = [".*\\.md$"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/knowmux"
@@ -16,22 +23,45 @@ adapter = "markdown"
 include = [".*\\.md$"]
 exclude = [
     "(^|/)mnemex-out/",
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
     "(^|/)\\.claude/",
     "(^|/)\\.venv/",
-    "(^|/)node_modules/"
+    "(^|/)node_modules/",
+    "(^|/)testdata/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+    "(^|/)scripts/test/sqlite-materializer/",
 ]
 
 [[sources]]
 path = "~/devel/roobie.github.io"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/lk"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)deps/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/pa"
@@ -39,69 +69,215 @@ adapter = "markdown"
 include = [".*\\.md$"]
 exclude = [
     "(^|/)mnemex-out/",
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
     "(^|/)\\.claude/",
     "(^|/)\\.venv/",
     "(^|/)node_modules/",
-    "(^|/)threads/results/",
+    "(^|/)threads/.*/results/",
     "(^|/)cache/",
+    "(^|/)obsolete/",
+    # collections live here (symlinked from ~/.config/knowmux/collections); the
+    # collection.toml defs are config, but a compressor-written synthesis.md
+    # sidecar would otherwise be ingested as a phantom source entry.
+    "(^|/)infra/knowmux/collections/",
+    "(^|/)projects/eu-grant-signal-research/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
 ]
 
 [[sources]]
 path = "~/devel/acos-kommunio"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/", "(^|/)cache/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)cache/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/kommunio.se"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/", "(^|/)cache/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)cache/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/cognex"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/", "(^|/)cache/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)cache/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/cairn"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/casq"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/dillylang"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/nanovault"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/mise-nanovault"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/sludgepool"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
 
 [[sources]]
 path = "~/devel/deltatrials"
 adapter = "markdown"
 include = [".*\\.md$"]
-exclude = ["(^|/)\\.claude/", "(^|/)\\.venv/", "(^|/)node_modules/"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
+
+
+[[sources]]
+path = "~/devel/research-endosymbiosis"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
+
+[[sources]]
+path = "~/devel/cosy.mcp"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = [
+    "(^|/)\\.agents/",
+    "(^|/)\\.pi/",
+    "(^|/)\\.claude/",
+    "(^|/)\\.venv/",
+    "(^|/)node_modules/",
+    "(^|/)[Bb]in/",
+    "(^|/)[Oo]bj/",
+    "(^|/)\\.vs/",
+    "(^|/)\\.idea/",
+    "(^|/)\\.planning/phases/",
+    "(^|/)\\.planning/quick/",
+]
+
+# ---
+# SEE: urn:unique_reference:knowmux::readme
+[[sources]]
+path = "~/.local/share/knowmux/sources/systemd"
+adapter = "markdown"
+include = [".*\\.md$"]
+exclude = []
+
+[adapter.systemd]
+include = [
+  "knowmux-*",
+  "restic-*",
+  "backup-*",
+  "nanovault-*",
+  "catena*",
+  "deltatrials.slice",
+  "notification-*.timer",   # ephemeral notification-<ts>.* still filtered by D-10 rule 3
+]
+freshness_slack = "1h"      # added to materializer cadence for valid_until (D-14)
