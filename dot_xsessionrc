@@ -1,0 +1,12 @@
+# Sourced by /etc/X11/Xsession.d/40x11-common_xsessionrc before the WM starts.
+# Tell each toolkit to render at 2x for the UHD panel.
+
+#export GDK_SCALE=2
+#export GDK_DPI_SCALE=1
+#export QT_AUTO_SCREEN_SCALE_FACTOR=1
+#export QT_ENABLE_HIGHDPI_SCALING=1
+#export XCURSOR_SIZE=48
+#export _JAVA_OPTIONS='-Dsun.java2d.uiScale=2'
+
+# Electron/Chromium apps honour this (VS Code, Discord, Slack, etc.).
+export ELECTRON_OZONE_PLATFORM_HINT=auto
