@@ -2,7 +2,7 @@
 -- i3-bank.lua — workspace bank switcher for i3
 --
 -- A "bank" is a named set of 10 workspaces. Each workspace is named
--- "<bank>:<n>" (e.g. "koala:1", "chimera:7"). State lives at
+-- "<bank>:<n>" (e.g. "koala:1", "jackal:7"). State lives at
 -- ~/.local/state/i3/banks.json: { current, previous, last = {bank=n, ...} }.
 --
 -- Subcommands:
@@ -21,9 +21,9 @@ local path = require("lk.path")
 local STATE = path.join(os.getenv("HOME"), ".local/state/i3/banks.json")
 
 -- Bank order determines the numeric prefix on workspace names so that i3
--- sorts them as koala:1..10, chimera:1..10, axolotl:1..10 in the bar.
+-- sorts them as koala:1..10, jackal:1..10, lion:1..10 in the bar.
 -- Adding a bank? Append it here and add a binding in i3 mode "bank".
-local BANKS = { "koala", "chimera", "axolotl" }
+local BANKS = { "koala", "jackal", "lion" }
 
 local function load_state()
   local raw = fs.read_file(STATE)

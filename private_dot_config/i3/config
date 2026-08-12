@@ -34,6 +34,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# when Replaced by proper HiDPI scaling — see ~/.Xresources (Xft.dpi: 192) and ~/.xsessionrc then apps act weird.
 exec --no-startup-id xrandr --output eDP-1 --scale 0.5x0.5
 
 # Use pactl to adjust volume in PulseAudio.
@@ -144,24 +145,24 @@ bindsym $mod+Shift+8 exec --no-startup-id $bank move 8
 bindsym $mod+Shift+9 exec --no-startup-id $bank move 9
 bindsym $mod+Shift+0 exec --no-startup-id $bank move 10
 
-# Bank switcher mode. $mod+b enters; press k/c/a to switch bank, Tab to swap
+# Bank switcher mode. $mod+b enters; press j/k/l to switch bank, Tab to swap
 # back to the previous bank, Escape/Return to leave without switching.
 mode "bank" {
         bindsym k exec --no-startup-id $bank bank koala,    mode "default"
-        bindsym c exec --no-startup-id $bank bank chimera,  mode "default"
-        bindsym a exec --no-startup-id $bank bank axolotl,  mode "default"
+        bindsym j exec --no-startup-id $bank bank jackal,   mode "default"
+        bindsym l exec --no-startup-id $bank bank lion,     mode "default"
         bindsym Tab exec --no-startup-id $bank bank previous, mode "default"
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 bindsym $mod+b mode "bank"
 
-# Send-to-bank mode. $mod+Shift+b enters; press k/c/a to send the focused
+# Send-to-bank mode. $mod+Shift+b enters; press j/k/l to send the focused
 # window to that bank's same-numbered workspace (focus stays put).
 mode "bank-send" {
         bindsym k exec --no-startup-id $bank send koala,    mode "default"
-        bindsym c exec --no-startup-id $bank send chimera,  mode "default"
-        bindsym a exec --no-startup-id $bank send axolotl,  mode "default"
+        bindsym j exec --no-startup-id $bank send jackal,   mode "default"
+        bindsym l exec --no-startup-id $bank send lion,     mode "default"
         bindsym Tab exec --no-startup-id $bank send previous, mode "default"
         bindsym Return mode "default"
         bindsym Escape mode "default"
