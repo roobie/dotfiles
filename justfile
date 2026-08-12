@@ -75,3 +75,36 @@ remove-source-code-pro:
     rm -rf "{{source_code_pro_dir}}"
     fc-cache -f
     echo "Removed {{source_code_pro_dir}}"
+
+# ---------------------------------------------------------------------------
+# /etc files — chezmoi manages only $HOME, so these are banked as copies
+# under _etc/ (listed in .chezmoiignore). Re-run bank-etc after editing a
+# live /etc file; install-etc restores them (new machine / recovery).
+# ---------------------------------------------------------------------------
+
+etc_files := "/etc/default/keyboard"
+etc_src := env("HOME") / ".local/share/chezmoi/_etc"
+
+# Copy the tracked /etc files into _etc/ (then commit)
+bank-etc:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    for f in {{etc_files}}; do
+        mkdir -p "{{etc_src}}$(dirname "$f")"
+        cp -v "$f" "{{etc_src}}$f"
+    done
+
+# Show drift between live /etc and the banked copies
+diff-etc:
+    #!/usr/bin/env bash
+    for f in {{etc_files}}; do
+        diff -u "{{etc_src}}$f" "$f" && echo "OK $f"
+    done
+
+# Restore banked copies to /etc (sudo)
+install-etc:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    for f in {{etc_files}}; do
+        sudo cp -v "{{etc_src}}$f" "$f"
+    done
