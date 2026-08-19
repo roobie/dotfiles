@@ -16,15 +16,21 @@ drafted email — those follow their own conventions).
 - **Nothing is ever worth 'dressing'**, so mentioning "worth saying plainly rather than dressing up" (and similar) is always regarded as filler.
 - **Structure earns its place.** Prose by default; headers/bullets/tables only
   past ~5 parallel items. Bold for real emphasis, not decoration.
-- **Don't state as fact what has no evidence other than inference**
+- **Don't state as fact what has no evidence (inference is not evidence)**
 
 **Items that are never compressed**: evidence and `file:line` refs, stated assumptions, uncertainty markers, what was *not* done
 or verified, and disagreement with my premise. Accuracy beats brevity; add the sentence.
 
 ---
 
+**All** knowmux references (identified by the double colon `::`) noted here live in the **global** store, so query it like this:
+
+`knowmux --global read-entry lk::feedback`
+
+---
+
 **Markdown files** (new or substantively edited) _should_ follow the authoring
-cheat-sheet under Conventions; full contract: `knowmux read-entry knowmux::canonical-source-file-format`.
+cheat-sheet under Conventions; full contract: `knowmux::canonical-source-file-format`.
 Canonical exceptions: `.planning/` `.agents/` `.pi/` `.claude/`; tool-convention files
 (`CLAUDE.md`, `README.md`, `CHANGELOG.md`); generated/vendored files. (Per `pa::adr-005`:
 the five fields are mandatory *when frontmatter is present*.)
@@ -36,7 +42,7 @@ the five fields are mandatory *when frontmatter is present*.)
 ## Secrets
 
 Default broker is **nanovault** (mise eval-time). How to recognize it, the rules,
-bootstrap, and gotchas → `knowmux read-entry pa::operating-rules-nanovault-operations`.
+bootstrap, and gotchas → `pa::operating-rules-nanovault-operations`.
 The bootstrap nanovault token is the crown jewel. If uncertain how to load secret
 material for an operation, ask.
 
@@ -61,11 +67,13 @@ isn't set/mapped, NOT a broker failure (the broker fails loud). Details:
 - _Always_ comment non-obvious source code — terse but valuable.
 - **BACKUP before destructive operation** — suggest an adhoc backup before any destructive update to live data.
 - Use language-specific editing tools (`gopls`, `typescript-lsp`, …) when available.
+- If no language-specific editing tools exist, use the `Edit` tool. Never use `sed` instead of `Edit`
+- Never use `sed` over the `Read` tool.
 - 'prepare to /clear' → first flush context worth keeping to its durable home.
     - **route by recall mechanism, per "Where to persist info" above**
     - Unless good reason: also commit files related to session
-    - Consider whether a procedure derived more than once? Possible candidate for `skillify` application -> surface it.
-- We are actively evaluating `lk` so whenever `lk` is applied/written/used it is important to note _constructive_ (if any) criticism in `lk::feedback` (unless already noted). It is in the **global** store: `knowmux -c ~/.config/knowmux/knowmux.toml read-entry lk::feedback`. From a repo carrying its own `.knowmux/`, a bare `knowmux read-entry` hits the local store and says "entry not found" — a scope miss, not an absence. (`--global` is in progress upstream; drop `-c` once it ships.)
+    - Consider whether a procedure derived more than once? Possible candidate for `skillify` application -> surface it, and if verified it has to be recorded so that next time it surfaces, there is a historical record to consider.
+- We are actively evaluating `lk` so whenever `lk` is applied/written/used it is important to note _constructive_ (if any) criticism in `lk::feedback` (unless already noted).
 - When developing agents skills: the files go into a <repo-root>/skills directory and installed by the `skills.sh` helper script like `skills.sh add ./skills/my-skill -y` (note the `./`)
 ---
 
@@ -87,6 +95,9 @@ or when a GSD/worktree flow needs isolation. Commit only when I ask; never
 force-push or rewrite a protected branch without an explicit go-ahead.
 
 In the `~/.claude` dir (auto-memory store, settings) the `.gitignore` ignores `*` by design.
+
+Commit grammar, staging/granularity, sweep-in handling, ff-only merge back to
+trunk → `pa::operating-rules-git-discipline`.
 
 ---
 
@@ -124,7 +135,7 @@ In the `~/.claude` dir (auto-memory store, settings) the `.gitignore` ignores `*
 - "observe" / "capture" / "note" / "where does this go?" / routing a design-note, proposal, or analysis → route by recall mechanism: **read-entry** `knowmux read-entry pa::adr-006` (+ `pa::adr-021`) — read-entry the named slugs, **do NOT `knowmux query`** for the convention (fuzzy query mis-ranks it).
 - Need operating knowledge (conventions / posture / how-we-do-X) → query the **operating-rules** knowmux collection directly (`knowmux_pile name=operating-rules`), not by topical overlap.
 - `mise` projects → run commands as `mise x -- COMMAND` (loads broker env; without it, secret-backed scripts fail with `nil`/missing-token errors that look like config bugs).
-- Web fetch → `knowmux read-entry pa::adr-019` (crwl for HTML, curl for APIs; WebFetch forbidden for evidence work; the `crawler.localdev` HTTP API + `f=raw` lesson are in that ADR).
+- Web fetch → `pa::adr-019` (crwl for HTML, curl for APIs; WebFetch forbidden for evidence work; the `crawler.localdev` HTTP API + `f=raw` lesson are in that ADR).
 - Search → prefer self-hosted SearXNG: `https://searxng.lan.bjro.dev/search?q=term&format=json`.
 - "pasta it" → pipe stdin to `~/.local/bin/pasta-it`, prints raw paste URL (don't width-wrap; newlines only between paragraphs; knobs: `PASTE_EXPIRY`, `PASTE_BASE` — read the script when needed).
 - "notify [at <ABSTIME|DELTATIME>]" → `lk ~/devel/pa/scripts/add-notification.lua --subject S --body B` with `--when "YYYY-MM-DD HH:MM"` or `--in 7d|2h|30m` (include terse locator info so a fresh session can find the source material; `--help` for the rest).

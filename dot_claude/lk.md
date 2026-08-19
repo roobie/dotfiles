@@ -10,7 +10,7 @@
     lk help csv           # CSV parsing
     lk help read file     # multi-word search
 
-**Available modules (40):** `path`, `json`, `env`, `os_info`, `fs`, `proc`, `async`, `string`, `csv`, `dbg`, `args`, `fmt`, `http`, `url`, `pp`, `sqlite`, `postgres`, `hash`, `crypto`, `zlib`, `gzip`, `re`, `schema`, `datetime`, `toml`, `yaml`, `ini`, `tar`, `peg`, `template`, `test`, `log`, `config`, `web`, `ssh`, `nng`, `markdown`, `html`, `smtp`, `xml`, `llm`, `task`.
+**Available modules (48):** `path`, `json`, `env`, `os_info`, `fs`, `proc`, `async`, `string`, `csv`, `dbg`, `args`, `fmt`, `http`, `url`, `pp`, `sqlite`, `postgres`, `hash`, `crypto`, `zlib`, `gzip`, `re`, `schema`, `datetime`, `toml`, `yaml`, `ini`, `tar`, `peg`, `template`, `test`, `log`, `config`, `web`, `ssh`, `nng`, `markdown`, `html`, `smtp`, `xml`, `llm`, `task`, `dns`, `websocket`, `mcp`, `sorting`, `help`, `encoding`.
 
 **Reach for lk modules over Lua/OS builtins:**
 
@@ -52,14 +52,14 @@
     end
 
     -- CSV processing
-    local records = lk.csv.parse(lk.fs.read_file("data.csv"), {headers = true})
+    local records = lk.csv.decode(lk.fs.read_file("data.csv"), {headers = true})
 
     -- CLI argument parsing
     local result = lk.args.parse({
       name = "mytool",
       args = {
-        {name = "file", type = "string", required = true},
-        {name = "--verbose", short = "-v", type = "boolean"},
+        {name = "file", required = true},
+        {name = "--verbose", alias = "-v", flag = true},
       }
     })
 
