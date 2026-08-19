@@ -26,9 +26,18 @@ local STATE = path.join(os.getenv("HOME"), ".local/state/i3/banks.json")
 local BANKS = { "koala", "jackal", "lion" }
 
 local function load_state()
+  local default = { current = BANKS[1], previous = BANKS[1], last = {} }
   local raw = fs.read_file(STATE)
-  if not raw then return { current = BANKS[1], previous = BANKS[1], last = {} } end
-  return json.decode(raw)
+  -- An empty or truncated state file (e.g. after an unclean shutdown) reads as
+  -- "" — truthy, but json.decode yields nil. Fall back rather than crash, or
+  -- every keybinding in the bank dies with the state file.
+  if not raw or raw == "" then return default end
+  local ok, decoded = pcall(json.decode, raw)
+  if not ok or type(decoded) ~= "table" then return default end
+  decoded.current  = decoded.current  or default.current
+  decoded.previous = decoded.previous or default.previous
+  decoded.last     = decoded.last     or {}
+  return decoded
 end
 
 local function save_state(s)
