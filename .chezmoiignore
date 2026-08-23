@@ -1,6 +1,10 @@
 _etc
 justfile
 _scripts
+
+# Host-local Emacs config — names local infrastructure; this repo is public.
+# config.el loads it with NOERROR, so its absence is harmless.
+.config/doom/local.el
 {{ if ne .chezmoi.os "windows" }}
 Documents
 {{ end }}
